@@ -8,6 +8,7 @@ import Card from './components/Card';
 import Label from './components/Label';
 import CardList from './components/CardList';
 import ItemContainer from './components/ItemContainer';
+import EpisodesList from './components/episodes/EpisodesList';
 
 function App() {
 
@@ -40,7 +41,9 @@ function App() {
       )} */}
 
       {/* <CardList></CardList> */}
-      <ItemContainer></ItemContainer>
+      {/* <ItemContainer></ItemContainer> */}
+
+      <EpisodesList></EpisodesList>
     </div>
   );
 }
