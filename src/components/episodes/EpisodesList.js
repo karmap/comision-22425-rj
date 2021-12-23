@@ -12,18 +12,25 @@ const EpisodesList = () => {
     }, [])
 
     const getEpisodes = () => {
-        const getPromise = new Promise( (res, rej) => {
-            const episodes = [
-                {title:'ep 1', id:'s01'},
-                {title:'ep 2', id:'s02'},
-                {title:'ep 3', id:'s03'}
-            ]
-            setTimeout(() => {
-                res(episodes)
-            }, 5000);
-        })
-        getPromise.then( res => setEpisodes(res))
+        const URL = 'https://rickandmortyapi.com/api/episode' 
+        fetch(URL)
+            .then( res => res.json() )
+            .then( data => setEpisodes(data.results) )
     }
+
+    // const getEpisodes = () => {
+    //     const getPromise = new Promise( (res, rej) => {
+    //         const episodes = [
+    //             {title:'ep 1', id:'s01'},
+    //             {title:'ep 2', id:'s02'},
+    //             {title:'ep 3', id:'s03'}
+    //         ]
+    //         setTimeout(() => {
+    //             res(episodes)
+    //         }, 5000);
+    //     })
+    //     getPromise.then( res => setEpisodes(res))
+    // }
 
     const addToWatchlist = id => {
         setWatchlist( [...watchlist, id] )

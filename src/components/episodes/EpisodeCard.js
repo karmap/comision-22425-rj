@@ -3,10 +3,10 @@ import React from 'react'
 const EpisodeCard = ( {episode, add} ) => {
     return (
         <div>
-            <h2>{episode.title}</h2>
-            <strong>{episode.id}</strong>
+            <h2>{episode.name}</h2>
+            <strong>{episode.episode}</strong>
             <br></br>
-            <button onClick={ () => {add(episode.id)} }>
+            <button onClick={ () => {add(episode.episode)} }>
                 Agregar a watchlist
             </button>
         </div>
