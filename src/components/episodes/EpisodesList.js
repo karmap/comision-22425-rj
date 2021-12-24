@@ -40,7 +40,11 @@ const EpisodesList = () => {
         <div>
             <h1>Lista de Episodios</h1>
             {episodes.map( e => 
-                <EpisodeCard episode={e} add={addToWatchlist}/>
+                <EpisodeCard
+                    key={e.episode}
+                    episode={e}
+                    add={addToWatchlist}
+                />
             )}
             <h1>Lista por ver</h1>
             {watchlist.map( e => <div>{e}</div> )}

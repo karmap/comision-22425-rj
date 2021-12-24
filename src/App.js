@@ -2,13 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 
+import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Card from './components/Card';
 import Label from './components/Label';
 import CardList from './components/CardList';
 import ItemContainer from './components/ItemContainer';
 import EpisodesList from './components/episodes/EpisodesList';
+import Contacto from './components/Contacto';
 
 function App() {
 
@@ -30,8 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar/>
-      
+            
       <Label title={titulo} subtitle='Mi subtitulo'/>
       <button onClick={ () => { setTitulo('Nuevo estado') } }>Cambiar Título</button>
 
@@ -43,7 +45,18 @@ function App() {
       {/* <CardList></CardList> */}
       {/* <ItemContainer></ItemContainer> */}
 
-      <EpisodesList></EpisodesList>
+      {/* <EpisodesList></EpisodesList> */}
+      <BrowserRouter>
+        <NavBar/>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="episodios" element={<EpisodesList />}>
+            <Route path=":episodeId" element={<EpisodesList />} />
+          </Route>
+          <Route path="contacto" element={<Contacto/>} />
+        </Routes>
+      
+      </BrowserRouter>
     </div>
   );
 }
