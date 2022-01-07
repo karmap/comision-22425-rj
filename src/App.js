@@ -12,6 +12,8 @@ import CardList from './components/CardList';
 import ItemContainer from './components/ItemContainer';
 import EpisodesList from './components/episodes/EpisodesList';
 import Contacto from './components/Contacto';
+import ItemDetail from './components/cart/ItemDetail';
+import LoginContainer from './components/login/LoginContainer';
 
 function App() {
 
@@ -53,6 +55,8 @@ function App() {
           <Route path="episodios" element={<EpisodesList />}>
             <Route path=":episodeId" element={<EpisodesList />} />
           </Route>
+          <Route path="ItemDetail" element={<ItemDetail/>} />
+          <Route path="login" element={<LoginContainer/>} />
           <Route path="contacto" element={<Contacto/>} />
         </Routes>
       
