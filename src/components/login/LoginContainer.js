@@ -1,14 +1,20 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import LoginForm from './LoginForm'
 import {ThemeContext, themes} from './login-context';
 
 const LoginContainer = () => {
 
-    const [theme, setTheme] = useState(themes.christmas)
+    const [theme, setTheme] = useState(themes.dark)
 
-    const onChangeHandler = () => {
-        
+    const onChangeHandler = (e) => {
+        const {value} = e.target
+        console.log(value);
+        setTheme(themes[value])
     }
+
+    useEffect(()=>{
+        console.log('El theme ahora es: ', theme);
+    }, [theme])
 
     return (
         <ThemeContext.Provider value={theme}>
