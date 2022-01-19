@@ -1,22 +1,42 @@
 import React from 'react'
 import EpisodeCard from './EpisodeCard'
 import { useEffect, useState } from 'react'
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 const EpisodesList = () => {
 
     const [episodes, setEpisodes] = useState([])
     const [watchlist, setWatchlist] = useState([])
 
-    useEffect( ()=>{
-        getEpisodes()
+    const db = getFirestore();
+
+    useEffect( async ()=>{
+        await getEpisodes()
     }, [])
 
-    const getEpisodes = () => {
-        const URL = 'https://rickandmortyapi.com/api/episode' 
-        fetch(URL)
-            .then( res => res.json() )
-            .then( data => setEpisodes(data.results) )
+    const getEpisodes = async () => {
+        let episodes = []
+        const querySnapshot = await getDocs(collection(db, "watchlist"));
+        querySnapshot.docs.forEach((doc) => {
+            const data = doc.data()
+            // console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+            episodes.push(
+                {
+                    episode: data.id ? data.id : data.episodeId,
+                    name: data.name
+                }
+            )
+        });
+        setEpisodes(episodes)
+        console.log('episodes', episodes)
     }
+
+    // const getEpisodes = () => {
+    //     const URL = 'https://rickandmortyapi.com/api/episode' 
+    //     fetch(URL)
+    //         .then( res => res.json() )
+    //         .then( data => setEpisodes(data.results) )
+    // }
 
     // const getEpisodes = () => {
     //     const getPromise = new Promise( (res, rej) => {
